@@ -19,15 +19,23 @@
 
 
 **Raspberrio terminalas:**
+
+Susiinstaliuoti node bibliotekas
+
+`npm install`
+
+Susidėti, kad _index.js_ pasileistų visada autimatiškai
+
 `crontab -e`
-@reboot sudo forever start /home/pi/troliai/index.js
+* @reboot sudo forever start /home/pi/troliai/index.js
 
 **Linkai:**
 - https://thetangle.org/tag/TROLOLOLOLOLOLOLOLOLOLOLLLL
 
-**Lengvas tutorialas:**
 
-**Hardwaras**
+### Lengvas tutorialas
+
+### Hardwaras
 
 *Visi failai **backend** kataloge*
 
@@ -53,7 +61,8 @@ const outsideSensor = "28-0415904a94ff";
 ```
 Tiek hardware. Žiūrėti failus.
 
-**Frontendas**
+
+### Frontendas
 
 *Visi failai **frontend** kataloge*
 
