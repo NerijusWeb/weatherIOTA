@@ -19,7 +19,7 @@
 
 
 **Raspberrio terminalas:**
-crontab -e
+`crontab -e`
 @reboot sudo forever start /home/pi/troliai/index.js
 
 **Linkai:**
@@ -34,8 +34,8 @@ nusiskenuojam termometrų ID
 
 `ds18b20 --list`
 
-28-0000075fdc4a - vidinis
-28-0415904a94ff - išorinis
+- 28-0000075fdc4a - vidinis
+- 28-0415904a94ff - išorinis
 
 Susikonfiginam IOTA
 ```
@@ -59,11 +59,18 @@ Webinės bibliotekos
 - https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js
 - https://cdn.rawgit.com/iotaledger/iota.lib.js/v0.4.5/dist/iota.js
 
-konfigas:
+Konfigas:
 servas gali būt tas pats arba kitas
 iota adresai ir tagai turi sutapti su backendo
+```
+const iota = new IOTA({
+    'provider': "http://nodes.iota.fm:80"
+});
+const iotaAddress = "TROLMAKERMAKERMAKERMAKERMAKERMAKERMAKERMAKERMAKERMAKERMAKERMAKERMAKERMAKERMAKERRR";
+const iotaTag = "TROLOLOLOLOLOLOLOLOLOLOLLLL";
+```
 
-su findTransactionObjects gaunam visas transakcijas iš adreso.
+su _findTransactionObjects_ gaunam visas transakcijas iš adreso.
 su pora pagalbinių funkcijų susirandam paskutinę tx pagal tagą
 Naudoju lodash, tiek node, tiek webe - patogu greit paprastus dalykus pasidaryti.
 ```
@@ -76,7 +83,7 @@ function findLastTxByTag(iotaTx, iotaTag) {
 }
 ```
 
-su fromTrytes išsiparsinam žinutę į normalų objektą ir tada galima atvaizduoti kaip elementarius kintamuosius
+su _fromTrytes_ išsiparsinam žinutę į normalų objektą ir tada galima atvaizduoti kaip elementarius kintamuosius
 ```
 function decodeTrytes(iotaTx) {
    const dataToParse = iotaTx.signatureMessageFragment.replace(/9+$/, "");
@@ -86,7 +93,20 @@ function decodeTrytes(iotaTx) {
    return iotaObject;
 }
 ```
-Main funkcija pasiima visas transakcijas iš adreso, tada susiranda paskutinę pagal tagą ir išsiparsina duomenų objektą.
+
+Maža pagalbinė funkcija sugeneruoja HTML su duomenimis.
+```
+function displayData(iotaData, time) {
+    insideTemp.innerHTML = `
+        <h3>${iotaData.inside} laipsniai</h3>`
+    outsideTemp.innerHTML = `
+        <h3>${iotaData.outside} laipsniai</h3>`
+    timeStamp.innerHTML = `
+        <h4>${new Date(time).toLocaleString()}</h4>`
+}
+```
+
+Main funkcija pasiima visas transakcijas iš adreso, tada susiranda paskutinę pagal tagą ir išsiparsina duomenų objektą. Viską atvaizduoja per _displayData()_ funkciją.
 ```
 function mainLoop() {
     let addr = {
@@ -104,16 +124,6 @@ function mainLoop() {
 }
 ```
 
-Maža pagalbinė funkcija sugeneruoja HTML su duomenimis.
-```
-function displayData(iotaData, time) {
-    insideTemp.innerHTML = `
-        <h3>${iotaData.inside} laipsniai</h3>`
-    outsideTemp.innerHTML = `
-        <h3>${iotaData.outside} laipsniai</h3>`
-    timeStamp.innerHTML = `
-        <h4>${new Date(time).toLocaleString()}</h4>`
-}
-```
+
 
 Viskas.
