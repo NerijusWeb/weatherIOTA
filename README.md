@@ -28,6 +28,7 @@
 **Lengvas tutorialas:**
 
 **Hardwaras**
+
 *Visi failai **backend** kataloge*
 
 nusiskenuojam termometrų ID
@@ -53,6 +54,7 @@ const outsideSensor = "28-0415904a94ff";
 Tiek hardware. Žiūrėti failus.
 
 **Frontendas**
+
 *Visi failai **frontend** kataloge*
 
 Webinės bibliotekos
