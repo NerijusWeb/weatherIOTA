@@ -1,0 +1,15 @@
+{
+  "name": "troliai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ds18b20-raspi": "^0.2.5",
+    "iota.lib.js": "^0.4.7"
+  }
+}
